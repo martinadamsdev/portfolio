@@ -6,9 +6,9 @@ const blogDirectory = path.join(process.cwd(), "src/content/blog");
 
 export interface BlogPostMeta {
   slug: string;
-  title?: string;
-  description?: string;
-  date?: string;
+  title: string;
+  description: string;
+  date: string;
   cover?: string;
   [key: string]: any;
 }
@@ -22,10 +22,18 @@ export function getAllPosts(): BlogPostMeta[] {
       const fullPath = path.join(blogDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
-      return {
+
+      // 确保必需的字段存在，否则使用默认值
+      const post: BlogPostMeta = {
         slug,
+        title: data.title || slug,
+        description: data.description || "No description available",
+        date: data.date || new Date().toISOString(),
+        cover: data.cover,
         ...data,
-      } as BlogPostMeta;
+      };
+
+      return post;
     });
-  return posts.sort((a, b) => (a.date && b.date && a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }

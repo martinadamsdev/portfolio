@@ -1,7 +1,21 @@
 import Image from "next/image";
 import dayjs from "dayjs";
 
-export default function BlogCard({ title, description, date, cover, slug }) {
+interface BlogCardProps {
+  title: string;
+  description: string;
+  date: string;
+  cover?: string;
+  slug: string;
+}
+
+export default function BlogCard({
+  title,
+  description,
+  date,
+  cover,
+  slug,
+}: BlogCardProps) {
   // 使用 dayjs 格式化日期为 MM/DD/YY 格式
   const formattedDate = date ? dayjs(date).format("MM/DD/YY") : "";
 

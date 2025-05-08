@@ -1,6 +1,20 @@
 import Image from "next/image";
 
-export default function ProjectCard({ title, description, link, image, tags }) {
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  link: string;
+  image?: string;
+  tags?: string[];
+}
+
+export default function ProjectCard({
+  title,
+  description,
+  link,
+  image,
+  tags,
+}: ProjectCardProps) {
   return (
     <div className="group relative rounded-xl border border-neutral-800 bg-gradient-to-br from-[#181c24] to-[#23272f] shadow-lg overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-2xl">
       {image && (

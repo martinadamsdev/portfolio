@@ -11,11 +11,9 @@ import PostNavigation from "@/components/post-navigation";
 import { getAllPosts } from "@/lib/blog";
 import type { Metadata } from "next";
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
+type PageProps = {
+  params: { slug: string };
+};
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join(process.cwd(), "src/content/blog"));
@@ -24,16 +22,13 @@ export async function generateStaticParams() {
   }));
 }
 
-async function getPost(slug: string) {
+function getPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content/blog", `${slug}.mdx`);
-
   if (!fs.existsSync(filePath)) {
     return null;
   }
-
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data: frontmatter, content } = matter(fileContent);
-
   return {
     frontmatter,
     content,
@@ -64,13 +59,11 @@ const MDXComponents = {
   ),
 };
 
-export default async function BlogPost({ params }: BlogPostProps) {
-  const post = await getPost(params.slug);
-
+export default function BlogPost({ params }: PageProps) {
+  const post = getPost(params.slug);
   if (!post) {
     notFound();
   }
-
   const { frontmatter, content } = post;
   const allPosts = getAllPosts();
   const currentIndex = allPosts.findIndex((post) => post.slug === params.slug);
@@ -115,12 +108,12 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
           <PostNavigation
             prevPost={
-              prevPost
+              prevPost?.title
                 ? { slug: prevPost.slug, title: prevPost.title }
                 : undefined
             }
             nextPost={
-              nextPost
+              nextPost?.title
                 ? { slug: nextPost.slug, title: nextPost.title }
                 : undefined
             }
@@ -138,8 +131,10 @@ export default async function BlogPost({ params }: BlogPostProps) {
   );
 }
 
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const post = getPost(params.slug);
   if (!post) return {};
   const { frontmatter } = post;
   const title = frontmatter.title || "Blog Post - Liquan (Martin) Wang";
