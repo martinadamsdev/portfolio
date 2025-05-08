@@ -1,10 +1,28 @@
-import withBundleAnalyzer from '@next/bundle-analyzer'
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
 
-withBundleAnalyzer({
-    enabled: process.env.ANALYZE === 'true',
-})
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+  },
+});
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "dev-to-uploads.s3.amazonaws.com",
+      },
+    ],
+  },
+};
 
-export default nextConfig
+export default withMDX(nextConfig);

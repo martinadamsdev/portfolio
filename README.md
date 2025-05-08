@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio
+
+A modern, responsive portfolio website built with Next.js, React, TypeScript, and MDX. This portfolio showcases your projects and blog posts, which you can easily write locally in Markdown.
+
+## Features
+
+- 🎨 Modern and clean design with dark/light mode
+- 📱 Fully responsive layout
+- 📝 Blog support with MDX
+- 🚀 Built with Next.js 14 and React 18
+- 💻 TypeScript for type safety
+- 🎯 SEO optimized
+- ⚡ Fast page loads with static generation
+- 🎨 Styled with Tailwind CSS
+- 🔍 Syntax highlighting for code blocks
+- 📦 Easy to customize and extend
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git
+   cd portfolio
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   pnpm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Start the development server:
 
-## Learn More
+   ```bash
+   pnpm dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Personal Information
 
-## Deploy on Vercel
+1. Update the metadata in `src/app/layout.tsx`
+2. Modify the content in `src/app/page.tsx`
+3. Update the about page in `src/app/about/page.tsx`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Projects
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Add your projects in `src/content/projects/`
+2. Each project should be a markdown file with frontmatter:
+   ```markdown
+   ---
+   title: Project Name
+   description: Project description
+   date: 2024-03-20
+   tags: [react, nextjs, typescript]
+   image: /images/projects/project-name.png
+   ---
+   ```
+
+### Blog Posts
+
+1. Add your blog posts in `src/content/blog/`
+2. Each post should be a markdown file with frontmatter:
+   ```markdown
+   ---
+   title: Blog Post Title
+   description: Blog post description
+   date: 2024-03-20
+   tags: [react, nextjs, typescript]
+   ---
+   ```
+
+### Styling
+
+The portfolio uses Tailwind CSS for styling. You can customize the theme in:
+
+- `tailwind.config.ts` - Theme configuration
+- `src/app/globals.css` - Global styles and CSS variables
+
+## Deployment
+
+The portfolio is configured for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Import your repository on Vercel
+3. Deploy!
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
