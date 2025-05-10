@@ -8,20 +8,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "http://localhost:3000";
 
   // 静态路由
-  const routes = ["", "/about", "/projects", "/blog"].map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "daily" as const,
-    priority: route === "" ? 1 : 0.8,
-  }));
+  const routes = [
+    {
+      url: `${siteUrl}`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily" as const,
+      priority: 1,
+    },
+    {
+      url: `${siteUrl}/about`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/projects`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    },
+  ];
 
   // 博客文章路由
   const posts = getAllPosts().map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "weekly" as const,
+    lastModified: new Date(post.date).toISOString(),
+    changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...routes, ...posts];
+  // 项目路由
+  const projects = getAllProjects().map((project) => ({
+    url: `${siteUrl}/projects/${project.slug}`,
+    lastModified: new Date(project.date || new Date()).toISOString(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...posts, ...projects];
 }
