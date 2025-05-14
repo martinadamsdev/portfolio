@@ -1,0 +1,8 @@
+# 现代浏览器
+last 2 versions
+not dead
+> 0.2%
+
+# 排除 IE 和旧版 Edge
+not IE 11
+not edge < 79 
