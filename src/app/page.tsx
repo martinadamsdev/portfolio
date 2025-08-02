@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description:
       "Senior Software Engineer with 7+ years of experience specializing in React, Next.js, TypeScript, and modern web development.",
     images: ["/opengraph-image"],
-    creator: "@martin_wang",
+    creator: "@martinadamsdev",
   },
   robots: {
     index: true,

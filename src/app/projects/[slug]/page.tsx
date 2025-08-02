@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { CreativeWorkSchema, BreadcrumbSchema } from "@/components/structured-data";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all projects
@@ -24,7 +24,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for each project
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   
   if (!project) {
     return {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     openGraph: {
       title: project.title,
       description: project.description,
-      url: `/projects/${params.slug}`,
+      url: `/projects/${slug}`,
       siteName: "Martin Portfolio",
       images: [
         {
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       creator: "@martinadamsdev",
     },
     alternates: {
-      canonical: `/projects/${params.slug}`,
+      canonical: `/projects/${slug}`,
     },
     robots: {
       index: true,
@@ -86,8 +87,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -96,7 +98,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const breadcrumbItems = [
     { name: "Home", url: "/" },
     { name: "Projects", url: "/projects" },
-    { name: project.title, url: `/projects/${params.slug}` }
+    { name: project.title, url: `/projects/${slug}` }
   ];
 
   return (
@@ -105,7 +107,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         title={project.title}
         description={project.description}
         url={project.liveUrl || project.link}
-        slug={params.slug}
+        slug={slug}
         technologies={project.tags || []}
       />
       <BreadcrumbSchema items={breadcrumbItems} />

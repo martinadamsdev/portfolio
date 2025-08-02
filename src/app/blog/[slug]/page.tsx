@@ -132,8 +132,10 @@ const MDXComponents = {
     // Use a wrapper that can be both block and inline to avoid p > div nesting
     return (
       <span className="block my-8 rounded-xl overflow-hidden border border-border shadow-sm">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="w-full h-auto block"
+          alt={props.alt || ''}
           {...props}
         />
       </span>

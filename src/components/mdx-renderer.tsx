@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, ReactElement } from "react";
-import { useMDXComponents } from "./mdx-components";
 
 interface MDXRendererProps {
   source: string;
