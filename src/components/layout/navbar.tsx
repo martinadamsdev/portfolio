@@ -22,8 +22,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold hidden sm:inline">
+          <Link href="/" className="mr-6 flex items-center space-x-2" aria-label="Martin - Home">
+            <span className="font-bold">
               Martin
             </span>
           </Link>
