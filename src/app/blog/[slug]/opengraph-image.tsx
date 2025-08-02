@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export const alt = "Blog Post - Liquan (Martin) Wang";
+export const alt = "Blog Post - Martin ";
 export const size = {
   width: 1200,
   height: 630,
@@ -44,7 +44,7 @@ export default async function OGImage({
       >
         <span>{title}</span>
         <span style={{ fontSize: 28, marginTop: 24 }}>
-          by Liquan (Martin) Wang
+          by Martin 
         </span>
       </div>
     ),

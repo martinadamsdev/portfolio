@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Liquan (Martin) Wang - Portfolio";
+export const alt = "Martin - Portfolio";
 export const size = {
   width: 1200,
   height: 630,
@@ -25,7 +25,7 @@ export default function OGImage() {
           fontWeight: 700,
         }}
       >
-        <span>Liquan (Martin) Wang</span>
+        <span>Martin</span>
         <span style={{ fontSize: 32, marginTop: 24 }}>
           Senior Software Engineer
         </span>

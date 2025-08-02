@@ -8,10 +8,15 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  link: string;
+  link?: string;
   image?: string;
   tags?: string[];
   date?: string;
+  featured?: boolean;
+  category?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  content?: string;
 }
 
 export function getAllProjects(): Project[] {
@@ -29,13 +34,47 @@ export function getAllProjects(): Project[] {
         slug,
         title: data.title || slug,
         description: data.description || "No description available",
-        link: data.link || "#",
+        link: data.link,
         image: data.image,
         tags: data.tags || [],
         date: data.date,
+        featured: data.featured || false,
+        category: data.category,
+        liveUrl: data.liveUrl,
+        githubUrl: data.githubUrl,
       };
 
       return project;
     });
   return projects.sort((a, b) => ((a.date || "") < (b.date || "") ? 1 : -1));
+}
+
+export function getFeaturedProjects(): Project[] {
+  const allProjects = getAllProjects();
+  return allProjects.filter(project => project.featured).slice(0, 3);
+}
+
+export function getProjectBySlug(slug: string): Project | null {
+  try {
+    const fullPath = path.join(projectsDirectory, `${slug}.mdx`);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContents);
+
+    return {
+      slug,
+      title: data.title || slug,
+      description: data.description || "No description available",
+      link: data.link,
+      image: data.image,
+      tags: data.tags || [],
+      date: data.date,
+      featured: data.featured || false,
+      category: data.category,
+      liveUrl: data.liveUrl,
+      githubUrl: data.githubUrl,
+      content,
+    };
+  } catch (error) {
+    return null;
+  }
 }

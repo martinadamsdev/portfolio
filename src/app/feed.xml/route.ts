@@ -9,7 +9,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Liquan (Martin) Wang's Blog</title>
+    <title>Martin's Blog</title>
     <link>${siteUrl}</link>
     <description>Technical articles and insights on React, Next.js, TypeScript, Node.js, Hono.js, and more.</description>
     <language>en</language>

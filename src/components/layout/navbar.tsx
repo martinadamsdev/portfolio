@@ -7,7 +7,6 @@ import { ModeToggle } from "@/components/mode-toggle";
 import ReadingProgressBar from "@/components/reading-progress-bar";
 
 const navigation = [
-  { name: "Home", href: "/" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
@@ -16,16 +15,16 @@ const navigation = [
 export function Navbar() {
   const pathname = usePathname();
 
-  // 仅在 /blog/xxx 详情页显示进度条
+  // Show progress bar only on blog detail pages
   const isBlogDetail = /^\/blog\/[\w-]+$/.test(pathname);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <span className="font-bold hidden sm:inline">
-              Liquan (Martin) Wang
+              Martin
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import dayjs from "dayjs";
 import { Suspense } from "react";
+import { cn } from "@/lib/utils";
 
 interface BlogCardProps {
   title: string;
@@ -8,6 +9,7 @@ interface BlogCardProps {
   date: string;
   cover?: string;
   slug: string;
+  className?: string;
 }
 
 // 图片组件
@@ -33,6 +35,7 @@ export default function BlogCard({
   date,
   cover,
   slug,
+  className,
 }: BlogCardProps) {
   // 使用 dayjs 格式化日期为 MM/DD/YY 格式
   const formattedDate = date ? dayjs(date).format("MM/DD/YY") : "";
@@ -40,26 +43,32 @@ export default function BlogCard({
   return (
     <a
       href={`/blog/${slug}`}
-      className="group block rounded-xl border border-neutral-200 bg-white dark:bg-[#181c24] shadow hover:shadow-lg transition overflow-hidden"
+      className={cn(
+        "group relative block rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300",
+        "hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 hover:border-primary/50",
+        className
+      )}
     >
       {cover && (
         <Suspense
           fallback={
-            <div className="h-48 bg-neutral-200 dark:bg-neutral-800 animate-pulse" />
+            <div className="h-48 bg-muted animate-pulse" />
           }
         >
           <BlogImage src={cover} alt={title} />
         </Suspense>
       )}
-      <div className="p-5">
-        <h2 className="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+      <div className="p-6">
+        <h2 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
           {title}
         </h2>
-        <p className="text-sm text-neutral-500 mb-2 line-clamp-2">
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
           {description}
         </p>
-        <div className="text-xs text-neutral-400">{formattedDate}</div>
+        <div className="text-xs text-muted-foreground">{formattedDate}</div>
       </div>
+      {/* Hover Effect Border */}
+      <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/20 rounded-2xl transition-colors duration-300 pointer-events-none" />
     </a>
   );
 }

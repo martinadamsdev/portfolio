@@ -1,9 +1,15 @@
 "use client";
 
+import React from "react";
 import { Github, Twitter, Linkedin, Code2 } from "lucide-react";
 import { SiStackoverflow } from "react-icons/si";
+import type { IconType } from "react-icons";
 
-const socialLinks = [
+const socialLinks: Array<{
+  name: string;
+  url: string;
+  icon: IconType | React.ComponentType<any>;
+}> = [
   {
     name: "GitHub",
     url: "https://github.com/martinadamsdev",
@@ -30,7 +36,7 @@ export function SocialLinks() {
   return (
     <div className="flex items-center space-x-4">
       {socialLinks.map((link) => {
-        const Icon = link.icon;
+        const IconComponent = link.icon as React.FC<{ className?: string }>;
         return (
           <a
             key={link.name}
@@ -40,7 +46,7 @@ export function SocialLinks() {
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label={link.name}
           >
-            <Icon className="h-5 w-5" />
+            <IconComponent className="h-5 w-5" />
           </a>
         );
       })}

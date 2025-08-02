@@ -7,48 +7,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
     "http://localhost:3000";
 
-  // 静态路由
+  // Static routes
   const routes = [
     {
       url: `${siteUrl}`,
       lastModified: new Date().toISOString(),
-      changeFrequency: "daily" as const,
-      priority: 1,
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
     },
     {
       url: `${siteUrl}/about`,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${siteUrl}/projects`,
       lastModified: new Date().toISOString(),
       changeFrequency: "weekly" as const,
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${siteUrl}/blog`,
       lastModified: new Date().toISOString(),
-      changeFrequency: "daily" as const,
-      priority: 0.8,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
     },
   ];
 
-  // 博客文章路由
+  // Blog post routes
   const posts = getAllPosts().map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date).toISOString(),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
-  // 项目路由
+  // Project routes
   const projects = getAllProjects().map((project) => ({
     url: `${siteUrl}/projects/${project.slug}`,
     lastModified: new Date(project.date || new Date()).toISOString(),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
   return [...routes, ...posts, ...projects];

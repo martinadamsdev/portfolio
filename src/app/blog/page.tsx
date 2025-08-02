@@ -4,20 +4,20 @@ import type { Metadata } from "next";
 import { Rss } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog - Liquan (Martin) Wang",
+  title: "Blog - Martin",
   description:
-    "Read technical articles and insights from Liquan (Martin) Wang on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+    "Read technical articles and insights from Martin on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
   openGraph: {
-    title: "Blog - Liquan (Martin) Wang",
+    title: "Blog - Martin",
     description:
-      "Read technical articles and insights from Liquan (Martin) Wang on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+      "Read technical articles and insights from Martin on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
     url: "/blog",
     images: ["/opengraph-image"],
   },
   twitter: {
-    title: "Blog - Liquan (Martin) Wang",
+    title: "Blog - Martin",
     description:
-      "Read technical articles and insights from Liquan (Martin) Wang on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+      "Read technical articles and insights from Martin on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
     images: ["/opengraph-image"],
   },
 };

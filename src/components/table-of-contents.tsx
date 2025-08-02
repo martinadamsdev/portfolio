@@ -14,14 +14,35 @@ export default function TableOfContents() {
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll("h2, h3, h4"));
-    const items = elements.map((element) => ({
-      id:
-        element.id ||
-        element.textContent?.toLowerCase().replace(/\s+/g, "-") ||
-        "",
-      text: element.textContent || "",
-      level: Number(element.tagName.charAt(1)),
-    }));
+    const usedIds = new Set<string>();
+    
+    const items = elements.map((element, index) => {
+      let id = element.id;
+      
+      if (!id) {
+        id = element.textContent?.toLowerCase().replace(/\s+/g, "-") || "";
+      }
+      
+      // Ensure unique ID
+      let uniqueId = id;
+      let counter = 1;
+      while (usedIds.has(uniqueId) || !uniqueId) {
+        uniqueId = `${id || 'heading'}-${counter}`;
+        counter++;
+      }
+      usedIds.add(uniqueId);
+      
+      // Set the ID on the element if it doesn't have one
+      if (!element.id) {
+        element.id = uniqueId;
+      }
+      
+      return {
+        id: uniqueId,
+        text: element.textContent || "",
+        level: Number(element.tagName.charAt(1)),
+      };
+    });
     setHeadings(items);
 
     const observer = new IntersectionObserver(

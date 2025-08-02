@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About - Liquan (Martin) Wang",
+  title: "About - Martin",
   description:
-    "Learn more about Liquan (Martin) Wang, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
+    "Learn more about Martin, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
   openGraph: {
-    title: "About - Liquan (Martin) Wang",
+    title: "About - Martin",
     description:
-      "Learn more about Liquan (Martin) Wang, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
+      "Learn more about Martin, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
     url: "/about",
     images: ["/opengraph-image"],
   },
   twitter: {
-    title: "About - Liquan (Martin) Wang",
+    title: "About - Martin",
     description:
-      "Learn more about Liquan (Martin) Wang, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
+      "Learn more about Martin, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
     images: ["/opengraph-image"],
   },
 };

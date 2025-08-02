@@ -3,20 +3,20 @@ import ProjectList from "@/components/project-list";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects - Liquan (Martin) Wang",
+  title: "Projects - Martin",
   description:
-    "Explore projects by Liquan (Martin) Wang, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+    "Explore projects by Martin, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
   openGraph: {
-    title: "Projects - Liquan (Martin) Wang",
+    title: "Projects - Martin",
     description:
-      "Explore projects by Liquan (Martin) Wang, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+      "Explore projects by Martin, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
     url: "/projects",
     images: ["/opengraph-image"],
   },
   twitter: {
-    title: "Projects - Liquan (Martin) Wang",
+    title: "Projects - Martin",
     description:
-      "Explore projects by Liquan (Martin) Wang, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
+      "Explore projects by Martin, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
     images: ["/opengraph-image"],
   },
 };
