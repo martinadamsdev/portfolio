@@ -130,42 +130,35 @@ export default function HomeClient() {
         </div>
 
         <div className="container max-w-5xl mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6"
-            >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+          <div className="text-center">
+            <div className="mb-6">
+              <motion.span
+                className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium"
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
                 7+ Years of Experience
-              </span>
-            </motion.div>
+              </motion.span>
+            </div>
 
-            <motion.h1
-              className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-gradient">
+            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6">
+              <motion.span
+                className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-300% animate-gradient inline-block"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+              >
                 Senior Software Engineer
-              </span>
-            </motion.h1>
+              </motion.span>
+            </h1>
 
-            <motion.h2
-              className="text-xl md:text-2xl text-muted-foreground mb-8 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              Full-Stack Engineer · Next.js · TypeScript · Architecture
-            </motion.h2>
+            <h2 className="text-xl md:text-2xl text-muted-foreground mb-8 font-medium">
+              <motion.span
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+              >
+                Full-Stack Engineer · Next.js · TypeScript · Architecture
+              </motion.span>
+            </h2>
 
             <motion.p
               className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground mb-10"
@@ -230,7 +223,7 @@ export default function HomeClient() {
                 );
               })}
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Scroll indicator */}
           <motion.div
