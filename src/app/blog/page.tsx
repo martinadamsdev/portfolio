@@ -1,10 +1,10 @@
-import { getAllPosts } from "@/lib/blog";
-import BlogList from "@/components/blog-list";
 import type { Metadata } from "next";
-import { Rss } from "lucide-react";
+import BlogList from "@/components/blog-list";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog - Martin",
+  alternates: { canonical: "/blog" },
   description:
     "Read technical articles and insights from Martin on React, Next.js, TypeScript, Node.js, Hono.js, and more.",
   openGraph: {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const posts = getAllPosts();
-  const siteUrl =
+  const _siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    "http://localhost:3000";
+    "https://martinadams.dev";
 
   return (
     <section className="container py-12">
@@ -45,7 +45,7 @@ export default function BlogPage() {
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           title="Subscribe to RSS feed"
         >
-          <Rss className="h-4 w-4" />
+          <span className="icon-[ph--rss-simple] h-4 w-4" aria-hidden="true" />
           <span>RSS Feed</span>
         </a>
       </div>

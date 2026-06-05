@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 
 const projectsDirectory = path.join(process.cwd(), "src/content/projects");
@@ -51,7 +51,7 @@ export function getAllProjects(): Project[] {
 
 export function getFeaturedProjects(): Project[] {
   const allProjects = getAllProjects();
-  return allProjects.filter(project => project.featured).slice(0, 3);
+  return allProjects.filter((project) => project.featured).slice(0, 3);
 }
 
 export function getProjectBySlug(slug: string): Project | null {
@@ -74,7 +74,7 @@ export function getProjectBySlug(slug: string): Project | null {
       githubUrl: data.githubUrl,
       content,
     };
-  } catch (error) {
+  } catch (_error) {
     return null;
   }
 }

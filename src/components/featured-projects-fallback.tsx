@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ExternalLink, Github, ArrowRight, Image as ImageIcon } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 // Fallback project data for client-side rendering
@@ -11,8 +10,10 @@ const fallbackProjects = [
   {
     slug: "e-commerce-platform",
     title: "E-Commerce Platform",
-    description: "A modern e-commerce platform built with Next.js, TypeScript, and Stripe. Features include real-time inventory, advanced search, and mobile-responsive design.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
+    description:
+      "A modern e-commerce platform built with Next.js, TypeScript, and Stripe. Features include real-time inventory, advanced search, and mobile-responsive design.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
     tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
     category: "Web Development",
     featured: true,
@@ -22,8 +23,10 @@ const fallbackProjects = [
   {
     slug: "task-management-app",
     title: "Task Management App",
-    description: "A collaborative task management application with real-time updates, team workspaces, and advanced project tracking capabilities.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
+    description:
+      "A collaborative task management application with real-time updates, team workspaces, and advanced project tracking capabilities.",
+    image:
+      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
     tags: ["React", "Node.js", "Socket.io", "MongoDB"],
     category: "Full Stack",
     featured: true,
@@ -33,8 +36,10 @@ const fallbackProjects = [
   {
     slug: "analytics-dashboard",
     title: "Analytics Dashboard",
-    description: "A comprehensive analytics dashboard with real-time data visualization, custom reports, and interactive charts for business intelligence.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    description:
+      "A comprehensive analytics dashboard with real-time data visualization, custom reports, and interactive charts for business intelligence.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     tags: ["Vue.js", "D3.js", "Python", "FastAPI"],
     category: "Data Visualization",
     featured: true,
@@ -51,16 +56,17 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
   if (error) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-muted">
-        <ImageIcon className="w-12 h-12 text-muted-foreground" />
+        <span
+          className="icon-[ph--image] w-12 h-12 text-muted-foreground"
+          aria-hidden="true"
+        />
       </div>
     );
   }
 
   return (
     <>
-      {loading && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
-      )}
+      {loading && <div className="absolute inset-0 bg-muted animate-pulse" />}
       <Image
         src={src}
         alt={alt}
@@ -93,7 +99,8 @@ export default function FeaturedProjectsFallback() {
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my most impactful work, demonstrating expertise in modern web technologies and scalable architecture.
+            A showcase of my most impactful work, demonstrating expertise in
+            modern web technologies and scalable architecture.
           </p>
         </motion.div>
 
@@ -111,13 +118,10 @@ export default function FeaturedProjectsFallback() {
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
-                <ProjectImage
-                  src={project.image}
-                  alt={project.title}
-                />
+                <ProjectImage src={project.image} alt={project.title} />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
+
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full backdrop-blur-sm">
@@ -136,7 +140,11 @@ export default function FeaturedProjectsFallback() {
                     whileTap={{ scale: 0.95 }}
                     aria-label="View live project"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <span className="sr-only">View live project</span>
+                    <span
+                      className="icon-[ph--arrow-square-out] w-4 h-4"
+                      aria-hidden="true"
+                    />
                   </motion.a>
                   <motion.a
                     href={project.githubUrl}
@@ -147,7 +155,11 @@ export default function FeaturedProjectsFallback() {
                     whileTap={{ scale: 0.95 }}
                     aria-label="View source code"
                   >
-                    <Github className="w-4 h-4" />
+                    <span className="sr-only">View source code</span>
+                    <span
+                      className="icon-[simple-icons--github] w-4 h-4"
+                      aria-hidden="true"
+                    />
                   </motion.a>
                 </div>
               </div>
@@ -187,7 +199,10 @@ export default function FeaturedProjectsFallback() {
                     className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                   >
                     View Live
-                    <ExternalLink className="w-3 h-3" />
+                    <span
+                      className="icon-[ph--arrow-square-out] w-3 h-3"
+                      aria-hidden="true"
+                    />
                   </a>
                   <a
                     href={project.githubUrl}
@@ -196,7 +211,10 @@ export default function FeaturedProjectsFallback() {
                     className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
                     Source Code
-                    <Github className="w-3 h-3" />
+                    <span
+                      className="icon-[simple-icons--github] w-3 h-3"
+                      aria-hidden="true"
+                    />
                   </a>
                 </div>
               </div>
@@ -222,7 +240,10 @@ export default function FeaturedProjectsFallback() {
               whileTap={{ scale: 0.95 }}
             >
               View All Projects
-              <ArrowRight className="w-4 h-4" />
+              <span
+                className="icon-[ph--arrow-right] w-4 h-4"
+                aria-hidden="true"
+              />
             </motion.div>
           </Link>
         </motion.div>

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ArrowUp } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,7 +42,7 @@ export default function ScrollToTop() {
           whileTap={{ scale: 0.95 }}
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5" />
+          <span className="icon-[ph--arrow-up] w-5 h-5" aria-hidden="true" />
         </motion.button>
       )}
     </AnimatePresence>

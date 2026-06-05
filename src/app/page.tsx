@@ -112,6 +112,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is the Next.js-recommended pattern; data is app-controlled, never user input
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomeClient />

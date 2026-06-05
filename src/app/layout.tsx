@@ -1,28 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import PageTransition from "@/components/page-transition";
-import ErrorBoundary from "@/components/error-boundary";
-import { LazyScrollToTop, LazySmoothScroll } from "@/components/lazy-client-components";
-import { ThemeTransition } from "@/components/theme-transition";
-import { PersonSchema, WebsiteSchema } from "@/components/structured-data";
 import { Inter } from "next/font/google";
+import ErrorBoundary from "@/components/error-boundary";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import {
+  LazyScrollToTop,
+  LazySmoothScroll,
+} from "@/components/lazy-client-components";
+import PageTransition from "@/components/page-transition";
+import { PersonSchema, WebsiteSchema } from "@/components/structured-data";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeTransition } from "@/components/theme-transition";
 
 const inter = Inter({
-  variable: '--font-inter',
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-  "http://localhost:3000";
+  "https://martinadams.dev";
 
 export const metadata: Metadata = {
   title: {
-    default: "Martin Wang - Senior Software Engineer | Full Stack Developer Portfolio",
+    default:
+      "Martin Wang - Senior Software Engineer | Full Stack Developer Portfolio",
     template: "%s | Martin Wang - Senior Software Engineer",
   },
   description:
@@ -80,7 +84,8 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "Portfolio, Blog, Technology",
   openGraph: {
-    title: "Martin Wang - Senior Software Engineer | Full Stack Developer Portfolio",
+    title:
+      "Martin Wang - Senior Software Engineer | Full Stack Developer Portfolio",
     description:
       "Martin Wang is a senior software engineer with 7+ years of experience specializing in modern web development. Expert in React, Next.js, TypeScript, Node.js, and Hono.js. View portfolio projects, technical blog posts, and professional experience.",
     url: siteUrl,
@@ -156,7 +161,6 @@ export const metadata: Metadata = {
     canonical: siteUrl,
     languages: {
       "en-US": siteUrl,
-      "zh-CN": `${siteUrl}/zh-cn`,
     },
     types: {
       "application/rss+xml": [
@@ -198,7 +202,7 @@ export const metadata: Metadata = {
     "article:author": "Martin Wang",
     "theme-color": "#000000",
     "color-scheme": "dark light",
-    "viewport": "width=device-width, initial-scale=1, maximum-scale=5",
+    viewport: "width=device-width, initial-scale=1, maximum-scale=5",
     "format-detection": "telephone=no",
   },
 };
@@ -212,12 +216,34 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="author" content="Martin Wang" />
-        <meta name="copyright" content={`© ${new Date().getFullYear()} Martin Wang`} />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <link rel="alternate" type="application/rss+xml" title="Martin Wang Blog RSS Feed" href="/feed.xml" />
-        <link rel="alternate" type="application/atom+xml" title="Martin Wang Blog Atom Feed" href="/atom.xml" />
+        <meta
+          name="copyright"
+          content={`© ${new Date().getFullYear()} Martin Wang`}
+        />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="bingbot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Martin Wang Blog RSS Feed"
+          href="/feed.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title="Martin Wang Blog Atom Feed"
+          href="/atom.xml"
+        />
         <PersonSchema />
         <WebsiteSchema />
       </head>

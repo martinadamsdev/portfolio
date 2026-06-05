@@ -7,7 +7,7 @@ export default async function FeaturedProjectsServer() {
     return <FeaturedProjectsClient projects={projects} />;
   } catch (error) {
     console.error("Error loading featured projects:", error);
-    
+
     // Fallback to empty array if file reading fails
     return <FeaturedProjectsClient projects={[]} />;
   }

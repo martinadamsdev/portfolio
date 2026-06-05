@@ -1,9 +1,11 @@
 import { getAllPosts } from "@/lib/blog";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    "http://localhost:3000";
+    "https://martinadams.dev";
   const posts = getAllPosts();
 
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
@@ -26,7 +28,7 @@ export async function GET() {
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <content:encoded><![CDATA[${post.description}]]></content:encoded>
     </item>
-    `
+    `,
       )
       .join("")}
   </channel>

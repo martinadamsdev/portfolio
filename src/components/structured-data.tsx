@@ -1,4 +1,4 @@
-import Script from 'next/script';
+import Script from "next/script";
 
 interface StructuredDataProps {
   data: object;
@@ -9,6 +9,7 @@ export function StructuredData({ data }: StructuredDataProps) {
     <Script
       id="structured-data"
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is the Next.js-recommended pattern; data is app-controlled, never user input
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
@@ -16,8 +17,10 @@ export function StructuredData({ data }: StructuredDataProps) {
 
 // Person Schema for Martin
 export function PersonSchema() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const personData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -26,14 +29,15 @@ export function PersonSchema() {
     givenName: "Martin",
     familyName: "Wang",
     alternateName: ["Martin Adams", "martinadamsdev"],
-    description: "Senior Software Engineer with 7+ years of experience specializing in modern web development, React, Next.js, TypeScript, and full-stack development",
+    description:
+      "Senior Software Engineer with 7+ years of experience specializing in modern web development, React, Next.js, TypeScript, and full-stack development",
     url: siteUrl,
     image: {
       "@type": "ImageObject",
       url: `${siteUrl}/opengraph-image`,
       width: "1200",
       height: "630",
-      caption: "Martin Wang - Senior Software Engineer"
+      caption: "Martin Wang - Senior Software Engineer",
     },
     sameAs: [
       "https://github.com/martinadamsdev",
@@ -41,19 +45,19 @@ export function PersonSchema() {
       "https://x.com/martinadamsdev",
       "https://stackoverflow.com/users/12156529/martiadamsdev",
       "https://dev.to/martinadamsdev",
-      "https://medium.com/@martinadamsdev"
+      "https://medium.com/@martinadamsdev",
     ],
     jobTitle: "Senior Software Engineer",
     worksFor: {
       "@type": "Organization",
       name: "Freelance",
-      description: "Independent software development consultant"
+      description: "Independent software development consultant",
     },
     knowsAbout: [
       "React",
       "React 18",
       "Next.js",
-      "Next.js 15", 
+      "Next.js 15",
       "TypeScript",
       "JavaScript ES6+",
       "Node.js",
@@ -84,45 +88,43 @@ export function PersonSchema() {
       "Web Development",
       "Frontend Development",
       "Backend Development",
-      "Full Stack Development"
+      "Full Stack Development",
     ],
     hasOccupation: {
       "@type": "Occupation",
       name: "Software Engineer",
-      educationRequirements: "Bachelor's degree in Computer Science or related field",
+      educationRequirements:
+        "Bachelor's degree in Computer Science or related field",
       experienceRequirements: "7+ years of professional experience",
       occupationalCategory: "15-1252.00",
-      skills: "React, Next.js, TypeScript, Node.js, Full Stack Development"
+      skills: "React, Next.js, TypeScript, Node.js, Full Stack Development",
     },
     email: "mailto:martinadams.dev@gmail.com",
     nationality: {
       "@type": "Country",
       name: "Singapore",
-      identifier: "SG"
+      identifier: "SG",
     },
     address: {
       "@type": "PostalAddress",
       addressCountry: "SG",
-      addressLocality: "Singapore"
+      addressLocality: "Singapore",
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",
-      name: "University Name"
+      name: "University Name",
     },
-    award: [
-      "Best Developer Award 2023",
-      "Innovation in Web Development 2022"
-    ],
+    award: ["Best Developer Award 2023", "Innovation in Web Development 2022"],
     memberOf: [
       {
         "@type": "Organization",
-        name: "React Community"
+        name: "React Community",
       },
       {
         "@type": "Organization",
-        name: "JavaScript Developers Association"
-      }
-    ]
+        name: "JavaScript Developers Association",
+      },
+    ],
   };
 
   return <StructuredData data={personData} />;
@@ -130,9 +132,10 @@ export function PersonSchema() {
 
 // Website Schema
 export function WebsiteSchema() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  const currentYear = new Date().getFullYear();
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const websiteData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -140,29 +143,30 @@ export function WebsiteSchema() {
     name: "Martin Wang - Senior Software Engineer Portfolio",
     alternateName: ["Martin Adams Portfolio", "martinadamsdev"],
     headline: "Senior Software Engineer Portfolio & Technical Blog",
-    description: "Portfolio website showcasing Martin Wang's projects, technical blog posts, and professional expertise in React, Next.js, TypeScript, and full-stack web development",
+    description:
+      "Portfolio website showcasing Martin Wang's projects, technical blog posts, and professional expertise in React, Next.js, TypeScript, and full-stack web development",
     url: siteUrl,
     author: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
-      name: "Martin Wang"
+      name: "Martin Wang",
     },
     publisher: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
-      name: "Martin Wang"
+      name: "Martin Wang",
     },
     creator: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
-      name: "Martin Wang"
+      name: "Martin Wang",
     },
     inLanguage: ["en-US", "en"],
     copyrightYear: 2020,
     copyrightHolder: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
-      name: "Martin Wang"
+      name: "Martin Wang",
     },
     dateCreated: "2020-01-01",
     dateModified: new Date().toISOString(),
@@ -181,30 +185,32 @@ export function WebsiteSchema() {
       "JavaScript",
       "Node.js",
       "senior developer",
-      "Singapore developer"
+      "Singapore developer",
     ],
     about: {
       "@type": "Thing",
       name: "Software Development",
-      description: "Modern web development, best practices, and technical insights"
+      description:
+        "Modern web development, best practices, and technical insights",
     },
     audience: {
       "@type": "Audience",
-      audienceType: "Developers, Tech Recruiters, Potential Clients, Tech Enthusiasts"
+      audienceType:
+        "Developers, Tech Recruiters, Potential Clients, Tech Enthusiasts",
     },
     potentialAction: [
       {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${siteUrl}/blog?search={search_term_string}`
+          urlTemplate: `${siteUrl}/blog?search={search_term_string}`,
         },
-        "query-input": "required name=search_term_string"
+        "query-input": "required name=search_term_string",
       },
       {
         "@type": "ReadAction",
-        target: `${siteUrl}/blog`
-      }
+        target: `${siteUrl}/blog`,
+      },
     ],
     mainEntity: {
       "@type": "ItemList",
@@ -213,40 +219,46 @@ export function WebsiteSchema() {
           "@type": "SiteNavigationElement",
           position: 1,
           name: "Home",
-          url: siteUrl
+          url: siteUrl,
         },
         {
           "@type": "SiteNavigationElement",
           position: 2,
           name: "About",
-          url: `${siteUrl}/about`
+          url: `${siteUrl}/about`,
         },
         {
           "@type": "SiteNavigationElement",
           position: 3,
           name: "Projects",
-          url: `${siteUrl}/projects`
+          url: `${siteUrl}/projects`,
         },
         {
           "@type": "SiteNavigationElement",
           position: 4,
           name: "Blog",
-          url: `${siteUrl}/blog`
-        }
-      ]
+          url: `${siteUrl}/blog`,
+        },
+      ],
     },
     isAccessibleForFree: true,
     isFamilyFriendly: true,
-    license: `${siteUrl}/license`
+    license: `${siteUrl}/license`,
   };
 
   return <StructuredData data={websiteData} />;
 }
 
 // Breadcrumb Schema
-export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: string }> }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+export function BreadcrumbSchema({
+  items,
+}: {
+  items: Array<{ name: string; url: string }>;
+}) {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const breadcrumbData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -254,23 +266,23 @@ export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: 
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${siteUrl}${item.url}`
-    }))
+      item: `${siteUrl}${item.url}`,
+    })),
   };
 
   return <StructuredData data={breadcrumbData} />;
 }
 
 // Article Schema for blog posts
-export function ArticleSchema({ 
-  title, 
-  description, 
-  publishedDate, 
-  modifiedDate, 
+export function ArticleSchema({
+  title,
+  description,
+  publishedDate,
+  modifiedDate,
   slug,
   tags = [],
   image,
-  readingTime
+  readingTime,
 }: {
   title: string;
   description: string;
@@ -281,8 +293,10 @@ export function ArticleSchema({
   image?: string;
   readingTime?: string;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const articleData = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -294,7 +308,7 @@ export function ArticleSchema({
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Martin Wang",
-      url: siteUrl
+      url: siteUrl,
     },
     publisher: {
       "@type": "Person",
@@ -304,8 +318,8 @@ export function ArticleSchema({
         "@type": "ImageObject",
         url: `${siteUrl}/logo.png`,
         width: "600",
-        height: "60"
-      }
+        height: "60",
+      },
     },
     datePublished: publishedDate,
     dateModified: modifiedDate || publishedDate,
@@ -313,12 +327,16 @@ export function ArticleSchema({
     url: `${siteUrl}/blog/${slug}`,
     image: {
       "@type": "ImageObject",
-      url: image ? `${siteUrl}${image}` : `${siteUrl}/blog/${slug}/opengraph-image`,
+      url: image
+        ? `${siteUrl}${image}`
+        : `${siteUrl}/blog/${slug}/opengraph-image`,
       width: "1200",
       height: "630",
-      caption: title
+      caption: title,
     },
-    thumbnailUrl: image ? `${siteUrl}${image}` : `${siteUrl}/blog/${slug}/opengraph-image`,
+    thumbnailUrl: image
+      ? `${siteUrl}${image}`
+      : `${siteUrl}/blog/${slug}/opengraph-image`,
     keywords: tags.join(", "),
     articleSection: "Technology",
     inLanguage: "en-US",
@@ -332,30 +350,30 @@ export function ArticleSchema({
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: siteUrl
+            item: siteUrl,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: `${siteUrl}/blog`
+            item: `${siteUrl}/blog`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: title,
-            item: `${siteUrl}/blog/${slug}`
-          }
-        ]
-      }
+            item: `${siteUrl}/blog/${slug}`,
+          },
+        ],
+      },
     },
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: ["headline", "description", "articleBody"]
+      cssSelector: ["headline", "description", "articleBody"],
     },
     potentialAction: {
       "@type": "ReadAction",
-      target: `${siteUrl}/blog/${slug}`
+      target: `${siteUrl}/blog/${slug}`,
     },
     timeRequired: readingTime || "PT5M",
     educationalLevel: "Intermediate",
@@ -367,8 +385,8 @@ export function ArticleSchema({
       "@type": "Blog",
       "@id": `${siteUrl}/blog#blog`,
       name: "Martin Wang's Technical Blog",
-      url: `${siteUrl}/blog`
-    }
+      url: `${siteUrl}/blog`,
+    },
   };
 
   return <StructuredData data={articleData} />;
@@ -383,7 +401,7 @@ export function CreativeWorkSchema({
   technologies = [],
   image,
   dateCreated,
-  featured = false
+  featured = false,
 }: {
   title: string;
   description: string;
@@ -394,8 +412,10 @@ export function CreativeWorkSchema({
   dateCreated?: string;
   featured?: boolean;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const projectData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -409,27 +429,42 @@ export function CreativeWorkSchema({
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Martin Wang",
-      url: siteUrl
+      url: siteUrl,
     },
     author: {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
-      name: "Martin Wang"
+      name: "Martin Wang",
     },
     url: url || `${siteUrl}/projects/${slug}`,
     sameAs: url,
     image: {
       "@type": "ImageObject",
-      url: image ? `${siteUrl}${image}` : `${siteUrl}/projects/${slug}/opengraph-image`,
+      url: image
+        ? `${siteUrl}${image}`
+        : `${siteUrl}/projects/${slug}/opengraph-image`,
       width: "1200",
       height: "630",
-      caption: `${title} - Project Screenshot`
+      caption: `${title} - Project Screenshot`,
     },
-    screenshot: image ? `${siteUrl}${image}` : `${siteUrl}/projects/${slug}/opengraph-image`,
+    screenshot: image
+      ? `${siteUrl}${image}`
+      : `${siteUrl}/projects/${slug}/opengraph-image`,
     keywords: technologies.join(", "),
-    programmingLanguage: technologies.filter(tech => 
-      ['JavaScript', 'TypeScript', 'Python', 'Java', 'Go', 'Rust', 'C++', 'PHP'].includes(tech)
-    ).join(", "),
+    programmingLanguage: technologies
+      .filter((tech) =>
+        [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "Java",
+          "Go",
+          "Rust",
+          "C++",
+          "PHP",
+        ].includes(tech),
+      )
+      .join(", "),
     softwareRequirements: "Modern web browser with JavaScript enabled",
     inLanguage: "en-US",
     genre: "Software Development",
@@ -440,15 +475,17 @@ export function CreativeWorkSchema({
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "USD"
+      priceCurrency: "USD",
     },
-    aggregateRating: featured ? {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "50",
-      bestRating: "5",
-      worstRating: "1"
-    } : undefined,
+    aggregateRating: featured
+      ? {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          ratingCount: "50",
+          bestRating: "5",
+          worstRating: "1",
+        }
+      : undefined,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${siteUrl}/projects/${slug}`,
@@ -459,28 +496,28 @@ export function CreativeWorkSchema({
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: siteUrl
+            item: siteUrl,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Projects",
-            item: `${siteUrl}/projects`
+            item: `${siteUrl}/projects`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: title,
-            item: `${siteUrl}/projects/${slug}`
-          }
-        ]
-      }
+            item: `${siteUrl}/projects/${slug}`,
+          },
+        ],
+      },
     },
     potentialAction: {
       "@type": "ViewAction",
       target: url || `${siteUrl}/projects/${slug}`,
-      name: "View Project"
-    }
+      name: "View Project",
+    },
   };
 
   return <StructuredData data={projectData} />;
@@ -491,7 +528,7 @@ export function OrganizationSchema({
   name,
   url,
   logo,
-  description
+  description,
 }: {
   name: string;
   url?: string;
@@ -508,30 +545,30 @@ export function OrganizationSchema({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Technical Support",
-      availableLanguage: ["English", "Chinese"]
-    }
+      availableLanguage: ["English", "Chinese"],
+    },
   };
 
   return <StructuredData data={organizationData} />;
 }
 
 // FAQ Schema
-export function FAQSchema({ 
-  faqs 
-}: { 
-  faqs: Array<{ question: string; answer: string }> 
+export function FAQSchema({
+  faqs,
+}: {
+  faqs: Array<{ question: string; answer: string }>;
 }) {
   const faqData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 
   return <StructuredData data={faqData} />;
@@ -542,15 +579,17 @@ export function CollectionPageSchema({
   title,
   description,
   url,
-  items = []
+  items = [],
 }: {
   title: string;
   description: string;
   url: string;
   items?: Array<{ name: string; url: string; description?: string }>;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const collectionData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -565,9 +604,9 @@ export function CollectionPageSchema({
         position: index + 1,
         url: `${siteUrl}${item.url}`,
         name: item.name,
-        description: item.description
-      }))
-    }
+        description: item.description,
+      })),
+    },
   };
 
   return <StructuredData data={collectionData} />;
@@ -575,26 +614,29 @@ export function CollectionPageSchema({
 
 // Professional Service Schema
 export function ProfessionalServiceSchema() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") || "https://martinadams.dev";
-  
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
+    "https://martinadams.dev";
+
   const serviceData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${siteUrl}/#service`,
     name: "Martin Wang - Freelance Software Development",
-    description: "Professional software development services specializing in React, Next.js, TypeScript, and full-stack web development",
+    description:
+      "Professional software development services specializing in React, Next.js, TypeScript, and full-stack web development",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/opengraph-image`,
     address: {
       "@type": "PostalAddress",
       addressCountry: "SG",
-      addressLocality: "Singapore"
+      addressLocality: "Singapore",
     },
     geo: {
       "@type": "GeoCoordinates",
       latitude: "1.3521",
-      longitude: "103.8198"
+      longitude: "103.8198",
     },
     serviceType: [
       "Web Development",
@@ -604,23 +646,23 @@ export function ProfessionalServiceSchema() {
       "Technical Consulting",
       "Code Review",
       "Performance Optimization",
-      "Architecture Design"
+      "Architecture Design",
     ],
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
         latitude: "1.3521",
-        longitude: "103.8198"
+        longitude: "103.8198",
       },
-      geoRadius: "50000"
+      geoRadius: "50000",
     },
     priceRange: "$$$",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       opens: "09:00",
-      closes: "18:00"
+      closes: "18:00",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -631,34 +673,37 @@ export function ProfessionalServiceSchema() {
           itemOffered: {
             "@type": "Service",
             name: "Full Stack Web Development",
-            description: "End-to-end web application development using modern technologies"
-          }
+            description:
+              "End-to-end web application development using modern technologies",
+          },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
             name: "Frontend Development",
-            description: "React and Next.js application development with focus on performance and UX"
-          }
+            description:
+              "React and Next.js application development with focus on performance and UX",
+          },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
             name: "Technical Consulting",
-            description: "Architecture design, code review, and performance optimization"
-          }
-        }
-      ]
+            description:
+              "Architecture design, code review, and performance optimization",
+          },
+        },
+      ],
     },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5.0",
       reviewCount: "25",
       bestRating: "5",
-      worstRating: "1"
-    }
+      worstRating: "1",
+    },
   };
 
   return <StructuredData data={serviceData} />;

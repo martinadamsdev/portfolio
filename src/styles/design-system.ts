@@ -6,18 +6,17 @@ export const animations = {
   fast: "150ms",
   normal: "300ms",
   slow: "500ms",
-  
+
   // Easing functions
   easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
   easeOut: "cubic-bezier(0, 0, 0.2, 1)",
   easeIn: "cubic-bezier(0.4, 0, 1, 1)",
-  
+
   // Common animation classes
   fadeIn: "animate-fade-in",
   slideUp: "animate-slide-up",
   float: "animate-float",
 } as const;
-
 
 export const borders = {
   default: "border border-border",
@@ -36,13 +35,16 @@ export const shadows = {
 
 export const gradients = {
   primary: "bg-gradient-to-r from-primary to-accent",
-  primaryText: "bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent",
-  cardOverlay: "bg-gradient-to-t from-background/80 via-transparent to-transparent",
+  primaryText:
+    "bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent",
+  cardOverlay:
+    "bg-gradient-to-t from-background/80 via-transparent to-transparent",
   shine: "bg-gradient-to-r from-transparent via-white/20 to-transparent",
 } as const;
 
 export const typography = {
-  heading1: "text-4xl md:text-5xl font-extrabold leading-tight tracking-tighter",
+  heading1:
+    "text-4xl md:text-5xl font-extrabold leading-tight tracking-tighter",
   heading2: "text-3xl md:text-4xl font-bold",
   heading3: "text-2xl font-bold",
   heading4: "text-xl font-bold",
@@ -93,7 +95,7 @@ export function createCardStyles(options?: {
   featured?: boolean;
 }) {
   const { size = "card", hover = true, featured = false } = options || {};
-  
+
   return [
     // Base styles
     "group relative bg-card overflow-hidden transition-all duration-300",
@@ -101,27 +103,31 @@ export function createCardStyles(options?: {
     borders.rounded,
     spacing[size],
     shadows.card,
-    
+
     // Hover effects
-    hover && [
-      shadows.cardHover,
-      borders.hover,
-      "hover:-translate-y-1"
-    ],
-    
+    hover && [shadows.cardHover, borders.hover, "hover:-translate-y-1"],
+
     // Featured styles
     featured && states.selected,
-  ].filter(Boolean).flat().join(" ");
+  ]
+    .filter(Boolean)
+    .flat()
+    .join(" ");
 }
 
-export function createButtonStyles(variant: "primary" | "secondary" | "ghost" = "primary") {
-  const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300";
-  
+export function createButtonStyles(
+  variant: "primary" | "secondary" | "ghost" = "primary",
+) {
+  const baseStyles =
+    "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300";
+
   const variants = {
-    primary: "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105",
-    secondary: "border border-border bg-background hover:bg-accent hover:text-accent-foreground",
+    primary:
+      "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105",
+    secondary:
+      "border border-border bg-background hover:bg-accent hover:text-accent-foreground",
     ghost: "hover:bg-accent hover:text-accent-foreground",
   };
-  
+
   return `${baseStyles} ${variants[variant]}`;
 }

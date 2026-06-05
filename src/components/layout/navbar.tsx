@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
 import ReadingProgressBar from "@/components/reading-progress-bar";
+import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -22,10 +22,12 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2" aria-label="Martin - Home">
-            <span className="font-bold">
-              Martin
-            </span>
+          <Link
+            href="/"
+            className="mr-6 flex items-center space-x-2"
+            aria-label="Martin - Home"
+          >
+            <span className="font-bold">Martin</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {navigation.map((item) => (
@@ -36,7 +38,7 @@ export function Navbar() {
                   "transition-colors hover:text-foreground/80",
                   pathname === item.href
                     ? "text-foreground"
-                    : "text-foreground/60"
+                    : "text-foreground/60",
                 )}
               >
                 {item.name}

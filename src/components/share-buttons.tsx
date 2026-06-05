@@ -1,6 +1,5 @@
 "use client";
 
-import { Twitter, Linkedin, Link2 } from "lucide-react";
 import { useState } from "react";
 
 interface ShareButtonsProps {
@@ -13,10 +12,10 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
 
   const shareLinks = {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-      url
+      url,
     )}&text=${encodeURIComponent(title)}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-      url
+      url,
     )}`,
   };
 
@@ -39,7 +38,8 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
         className="text-neutral-500 hover:text-cyan-400 transition-colors"
         aria-label="Share on Twitter"
       >
-        <Twitter className="h-5 w-5" />
+        <span className="sr-only">Share on Twitter</span>
+        <span className="icon-[simple-icons--x] h-5 w-5" aria-hidden="true" />
       </a>
       <a
         href={shareLinks.linkedin}
@@ -48,14 +48,19 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
         className="text-neutral-500 hover:text-cyan-400 transition-colors"
         aria-label="Share on LinkedIn"
       >
-        <Linkedin className="h-5 w-5" />
+        <span className="sr-only">Share on LinkedIn</span>
+        <span
+          className="icon-[simple-icons--linkedin] h-5 w-5"
+          aria-hidden="true"
+        />
       </a>
       <button
+        type="button"
         onClick={copyToClipboard}
         className="text-neutral-500 hover:text-cyan-400 transition-colors"
         aria-label="Copy link"
       >
-        <Link2 className="h-5 w-5" />
+        <span className="icon-[ph--link] h-5 w-5" aria-hidden="true" />
       </button>
       {copied && <span className="text-sm text-cyan-400">Link copied!</span>}
     </div>

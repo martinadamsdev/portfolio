@@ -12,10 +12,16 @@ export default function PerformanceMonitor() {
       if (entry.entryType === "navigation") {
         const navEntry = entry as PerformanceNavigationTiming;
         console.log("Navigation timing:", {
-          domContentLoaded: navEntry.domContentLoadedEventEnd - navEntry.domContentLoadedEventStart,
+          domContentLoaded:
+            navEntry.domContentLoadedEventEnd -
+            navEntry.domContentLoadedEventStart,
           load: navEntry.loadEventEnd - navEntry.loadEventStart,
-          firstPaint: performance.getEntriesByType("paint").find(e => e.name === "first-paint")?.startTime,
-          firstContentfulPaint: performance.getEntriesByType("paint").find(e => e.name === "first-contentful-paint")?.startTime,
+          firstPaint: performance
+            .getEntriesByType("paint")
+            .find((e) => e.name === "first-paint")?.startTime,
+          firstContentfulPaint: performance
+            .getEntriesByType("paint")
+            .find((e) => e.name === "first-contentful-paint")?.startTime,
         });
       }
     }
@@ -27,8 +33,8 @@ export default function PerformanceMonitor() {
       }
     });
 
-    observer.observe({ 
-      entryTypes: ["navigation", "paint", "largest-contentful-paint"] 
+    observer.observe({
+      entryTypes: ["navigation", "paint", "largest-contentful-paint"],
     });
 
     // Cleanup

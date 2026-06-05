@@ -1,65 +1,75 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Quote, Star, User } from "lucide-react";
 import Image from "next/image";
-import { createCardStyles, typography, layouts } from "@/styles/design-system";
-import type { Testimonial } from "@/types";
 import { useState } from "react";
+import type { Testimonial } from "@/types";
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    content: "Martin is an exceptional full-stack developer who delivered our complex e-commerce platform ahead of schedule. His expertise in React and Node.js is outstanding.",
+    content:
+      "Martin is an exceptional full-stack developer who delivered our complex e-commerce platform ahead of schedule. His expertise in React and Node.js is outstanding.",
     author: "Sarah Johnson",
     role: "CTO",
     company: "TechCorp",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
   {
     id: 2,
-    content: "Working with Martin was a game-changer for our startup. His modern approach to web development and attention to performance optimization helped us scale rapidly.",
+    content:
+      "Working with Martin was a game-changer for our startup. His modern approach to web development and attention to performance optimization helped us scale rapidly.",
     author: "David Chen",
     role: "Founder & CEO",
     company: "InnovateLab",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
   {
     id: 3,
-    content: "Martin's TypeScript skills and clean code practices significantly improved our codebase quality. He's a true professional who delivers exceptional results.",
+    content:
+      "Martin's TypeScript skills and clean code practices significantly improved our codebase quality. He's a true professional who delivers exceptional results.",
     author: "Emily Rodriguez",
     role: "Engineering Manager",
     company: "DataFlow Solutions",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
   {
     id: 4,
-    content: "The Next.js application Martin built for us exceeded all expectations. His architectural decisions and performance optimizations were spot-on.",
+    content:
+      "The Next.js application Martin built for us exceeded all expectations. His architectural decisions and performance optimizations were spot-on.",
     author: "Michael Kim",
     role: "Product Director",
     company: "CloudTech Inc",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
   {
     id: 5,
-    content: "Martin's ability to translate complex business requirements into elegant technical solutions is remarkable. He's our go-to developer for critical projects.",
+    content:
+      "Martin's ability to translate complex business requirements into elegant technical solutions is remarkable. He's our go-to developer for critical projects.",
     author: "Lisa Wang",
     role: "VP of Engineering",
     company: "FinanceFlow",
-    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
   {
     id: 6,
-    content: "His expertise in modern web technologies and DevOps practices helped us modernize our entire tech stack. Highly recommended!",
+    content:
+      "His expertise in modern web technologies and DevOps practices helped us modernize our entire tech stack. Highly recommended!",
     author: "James Miller",
     role: "Technical Lead",
     company: "ModernApps",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=face",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=face",
     rating: 5,
   },
 ];
@@ -72,16 +82,17 @@ function TestimonialAvatar({ src, alt }: { src: string; alt: string }) {
   if (error) {
     return (
       <div className="w-full h-full flex items-center justify-center bg-muted">
-        <User className="w-5 h-5 text-muted-foreground" />
+        <span
+          className="icon-[ph--user] w-5 h-5 text-muted-foreground"
+          aria-hidden="true"
+        />
       </div>
     );
   }
 
   return (
     <>
-      {loading && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
-      )}
+      {loading && <div className="absolute inset-0 bg-muted animate-pulse" />}
       <Image
         src={src}
         alt={alt}
@@ -146,7 +157,8 @@ export default function Testimonials() {
             What Clients Say
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don&apos;t just take my word for it. Here&apos;s what industry leaders and clients say about working with me.
+            Don&apos;t just take my word for it. Here&apos;s what industry
+            leaders and clients say about working with me.
           </p>
         </motion.div>
 
@@ -164,15 +176,19 @@ export default function Testimonials() {
             >
               {/* Quote Icon */}
               <div className="absolute -top-3 -left-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <Quote className="w-4 h-4 text-primary-foreground" />
+                <span
+                  className="icon-[ph--quotes] w-4 h-4 text-primary-foreground"
+                  aria-hidden="true"
+                />
               </div>
 
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
+                  <span
                     key={i}
-                    className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    className="icon-[ph--star] w-4 h-4 fill-yellow-400 text-yellow-400"
+                    aria-hidden="true"
                   />
                 ))}
               </div>
@@ -219,7 +235,8 @@ export default function Testimonials() {
         >
           <h3 className="text-2xl font-bold mb-4">Ready to Work Together?</h3>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            Let&apos;s discuss your project and see how we can create something amazing together.
+            Let&apos;s discuss your project and see how we can create something
+            amazing together.
           </p>
           <motion.a
             href="mailto:martinadams.dev@gmail.com"

@@ -6,36 +6,35 @@ export const size = {
   height: 630,
 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
 
 export default function OGImage() {
   return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 64,
-          background: "linear-gradient(135deg, #18181b 0%, #2563eb 100%)",
-          color: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          letterSpacing: "-2px",
-          fontWeight: 700,
-        }}
-      >
-        <span>Martin </span>
-        <span style={{ fontSize: 32, marginTop: 24 }}>
-          Senior Software Engineer
-        </span>
-        <span style={{ fontSize: 24, marginTop: 12 }}>
-          React · Next.js · TypeScript · Node.js · Hono.js
-        </span>
-      </div>
-    ),
+    <div
+      style={{
+        fontSize: 64,
+        background: "linear-gradient(135deg, #18181b 0%, #2563eb 100%)",
+        color: "white",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        letterSpacing: "-2px",
+        fontWeight: 700,
+      }}
+    >
+      <span>Martin </span>
+      <span style={{ fontSize: 32, marginTop: 24 }}>
+        Senior Software Engineer
+      </span>
+      <span style={{ fontSize: 24, marginTop: 12 }}>
+        React · Next.js · TypeScript · Node.js · Hono.js
+      </span>
+    </div>,
     {
       ...size,
-    }
+    },
   );
 }

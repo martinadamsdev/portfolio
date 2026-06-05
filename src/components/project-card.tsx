@@ -1,9 +1,8 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
-import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -33,7 +32,7 @@ export default function ProjectCard({
         "group relative rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300",
         "hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 hover:border-primary/50",
         featured && "ring-2 ring-primary/20",
-        className
+        className,
       )}
     >
       {/* Featured Badge */}
@@ -57,20 +56,24 @@ export default function ProjectCard({
           />
           {/* Image Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* External Link Icon */}
           {link && (
             <button
+              type="button"
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                window.open(link, '_blank', 'noopener,noreferrer');
+                window.open(link, "_blank", "noopener,noreferrer");
               }}
               className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
               aria-label={`Open ${title} project in new tab`}
             >
               <div className="p-2 bg-background/80 backdrop-blur-sm rounded-lg hover:bg-background transition-colors">
-                <ExternalLink className="w-4 h-4 text-foreground" />
+                <span
+                  className="icon-[ph--arrow-square-out] w-4 h-4 text-foreground"
+                  aria-hidden="true"
+                />
               </div>
             </button>
           )}
@@ -108,8 +111,19 @@ export default function ProjectCard({
         {/* Call to Action */}
         <div className="flex items-center gap-2 text-sm font-medium text-primary group-hover:text-primary/80 transition-colors">
           Learn More
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </div>
       </div>

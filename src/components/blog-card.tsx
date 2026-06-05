@@ -1,5 +1,5 @@
-import Image from "next/image";
 import dayjs from "dayjs";
+import Image from "next/image";
 import { Suspense } from "react";
 import { cn } from "@/lib/utils";
 
@@ -46,15 +46,11 @@ export default function BlogCard({
       className={cn(
         "group relative block rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300",
         "hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 hover:border-primary/50",
-        className
+        className,
       )}
     >
       {cover && (
-        <Suspense
-          fallback={
-            <div className="h-48 bg-muted animate-pulse" />
-          }
-        >
+        <Suspense fallback={<div className="h-48 bg-muted animate-pulse" />}>
           <BlogImage src={cover} alt={title} />
         </Suspense>
       )}

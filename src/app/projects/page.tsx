@@ -1,9 +1,10 @@
-import { getAllProjects } from "@/lib/projects";
-import ProjectList from "@/components/project-list";
 import type { Metadata } from "next";
+import ProjectList from "@/components/project-list";
+import { getAllProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Projects - Martin",
+  alternates: { canonical: "/projects" },
   description:
     "Explore projects by Martin, showcasing expertise in React, Next.js, TypeScript, Node.js, Hono.js, and more.",
   openGraph: {

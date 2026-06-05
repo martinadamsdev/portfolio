@@ -1,72 +1,121 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiNodedotjs,
-  SiVuedotjs,
-  SiTailwindcss,
-  SiRedux,
-  SiAntdesign,
-  SiNestjs,
-  SiGoland,
-  SiPython,
-  SiFastapi,
-  SiPhp,
-  SiLaravel,
-} from "react-icons/si";
-import { Squirrel, Github, Linkedin, Mail, ChevronDown } from "lucide-react";
-import { FaTwitter, FaStackOverflow } from "react-icons/fa";
 import { motion } from "motion/react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import FeaturedProjectsFallback from "@/components/featured-projects-fallback";
 import { LazyTestimonials } from "@/components/lazy-client-components";
 import type { Skill, SocialLink } from "@/types";
 
 const skills: Skill[] = [
-  { name: "React", icon: SiReact, level: 90, url: "https://react.dev", color: "#61DAFB" },
-  { name: "Next.js", icon: SiNextdotjs, level: 85, url: "https://nextjs.org", color: "#000000" },
+  {
+    name: "React",
+    icon: "icon-[simple-icons--react]",
+    level: 90,
+    url: "https://react.dev",
+    color: "#61DAFB",
+  },
+  {
+    name: "Next.js",
+    icon: "icon-[simple-icons--nextdotjs]",
+    level: 85,
+    url: "https://nextjs.org",
+    color: "#000000",
+  },
   {
     name: "TypeScript",
-    icon: SiTypescript,
+    icon: "icon-[simple-icons--typescript]",
     level: 90,
     url: "https://www.typescriptlang.org",
     color: "#3178C6",
   },
-  { name: "Node.js", icon: SiNodedotjs, level: 80, url: "https://nodejs.org", color: "#339933" },
-  { name: "Vue", icon: SiVuedotjs, level: 70, url: "https://vuejs.org", color: "#4FC08D" },
+  {
+    name: "Node.js",
+    icon: "icon-[simple-icons--nodedotjs]",
+    level: 80,
+    url: "https://nodejs.org",
+    color: "#339933",
+  },
+  {
+    name: "Vue",
+    icon: "icon-[simple-icons--vuedotjs]",
+    level: 70,
+    url: "https://vuejs.org",
+    color: "#4FC08D",
+  },
   {
     name: "Tailwind CSS",
-    icon: SiTailwindcss,
+    icon: "icon-[simple-icons--tailwindcss]",
     level: 90,
     url: "https://tailwindcss.com",
     color: "#06B6D4",
   },
-  { name: "Golang", icon: SiGoland, level: 60, url: "https://go.dev", color: "#00ADD8" },
-  { name: "Redux", icon: SiRedux, level: 80, url: "https://redux.js.org", color: "#764ABC" },
+  {
+    name: "Golang",
+    icon: "icon-[simple-icons--goland]",
+    level: 60,
+    url: "https://go.dev",
+    color: "#00ADD8",
+  },
+  {
+    name: "Redux",
+    icon: "icon-[simple-icons--redux]",
+    level: 80,
+    url: "https://redux.js.org",
+    color: "#764ABC",
+  },
   {
     name: "Ant Design",
-    icon: SiAntdesign,
+    icon: "icon-[simple-icons--antdesign]",
     level: 75,
     url: "https://ant.design",
     color: "#0170FE",
   },
-  { name: "Nest.js", icon: SiNestjs, level: 70, url: "https://nestjs.com", color: "#E0234E" },
-  { name: "Hono.js", icon: SiNodedotjs, level: 70, url: "https://hono.dev/", color: "#E36002" },
-  { name: "Python", icon: SiPython, level: 70, url: "https://www.python.org", color: "#3776AB" },
+  {
+    name: "Nest.js",
+    icon: "icon-[simple-icons--nestjs]",
+    level: 70,
+    url: "https://nestjs.com",
+    color: "#E0234E",
+  },
+  {
+    name: "Hono.js",
+    icon: "icon-[simple-icons--nodedotjs]",
+    level: 70,
+    url: "https://hono.dev/",
+    color: "#E36002",
+  },
+  {
+    name: "Python",
+    icon: "icon-[simple-icons--python]",
+    level: 70,
+    url: "https://www.python.org",
+    color: "#3776AB",
+  },
   {
     name: "FastAPI",
-    icon: SiFastapi,
+    icon: "icon-[simple-icons--fastapi]",
     level: 70,
     url: "https://fastapi.tiangolo.com",
     color: "#009688",
   },
-  { name: "PHP", icon: SiPhp, level: 70, url: "https://www.php.net", color: "#777BB4" },
-  { name: "Laravel", icon: SiLaravel, level: 70, url: "https://laravel.com", color: "#FF2D20" },
+  {
+    name: "PHP",
+    icon: "icon-[simple-icons--php]",
+    level: 70,
+    url: "https://www.php.net",
+    color: "#777BB4",
+  },
+  {
+    name: "Laravel",
+    icon: "icon-[simple-icons--laravel]",
+    level: 70,
+    url: "https://laravel.com",
+    color: "#FF2D20",
+  },
   {
     name: "Zustand",
-    icon: Squirrel,
+    icon: "icon-[ph--acorn]",
     level: 80,
     url: "https://zustand-demo.pmnd.rs/",
     color: "#FFB13B",
@@ -74,11 +123,31 @@ const skills: Skill[] = [
 ];
 
 const socialLinks: SocialLink[] = [
-  { name: "GitHub", icon: Github, url: "https://github.com/martinadamsdev" },
-  { name: "Twitter", icon: FaTwitter, url: "https://x.com/martinadamsdev" },
-  { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/liquan-wang/" },
-  { name: "StackOverflow", icon: FaStackOverflow, url: "https://stackoverflow.com/users/12156529/martiadamsdev" },
-  { name: "Email", icon: Mail, url: "mailto:martinadams.dev@gmail.com" },
+  {
+    name: "GitHub",
+    icon: "icon-[simple-icons--github]",
+    url: "https://github.com/martinadamsdev",
+  },
+  {
+    name: "Twitter",
+    icon: "icon-[simple-icons--x]",
+    url: "https://x.com/martinadamsdev",
+  },
+  {
+    name: "LinkedIn",
+    icon: "icon-[simple-icons--linkedin]",
+    url: "https://www.linkedin.com/in/liquan-wang/",
+  },
+  {
+    name: "StackOverflow",
+    icon: "icon-[simple-icons--stackoverflow]",
+    url: "https://stackoverflow.com/users/12156529/martiadamsdev",
+  },
+  {
+    name: "Email",
+    icon: "icon-[ph--envelope]",
+    url: "mailto:martinadams.dev@gmail.com",
+  },
 ];
 
 export default function HomeClient() {
@@ -100,7 +169,7 @@ export default function HomeClient() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 gradient-bg opacity-10 dark:opacity-5" />
-        
+
         {/* Floating shapes */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -152,10 +221,7 @@ export default function HomeClient() {
             </h1>
 
             <h2 className="text-xl md:text-2xl text-muted-foreground mb-8 font-medium">
-              <motion.span
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-              >
+              <motion.span initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
                 Full-Stack Engineer · Next.js · TypeScript · Architecture
               </motion.span>
             </h2>
@@ -168,9 +234,11 @@ export default function HomeClient() {
             >
               Hi, I&apos;m Martin. I craft exceptional digital experiences with{" "}
               <span className="text-foreground font-semibold">React</span>,{" "}
-              <span className="text-foreground font-semibold">Next.js</span>, and{" "}
-              <span className="text-foreground font-semibold">TypeScript</span>, building scalable
-              solutions that push the boundaries of web technology.
+              <span className="text-foreground font-semibold">Next.js</span>,
+              and{" "}
+              <span className="text-foreground font-semibold">TypeScript</span>,
+              building scalable solutions that push the boundaries of web
+              technology.
             </motion.p>
 
             <motion.div
@@ -187,7 +255,7 @@ export default function HomeClient() {
               >
                 View Projects
               </motion.a>
-              
+
               <motion.a
                 href="/blog"
                 className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-8 py-4 text-lg font-medium text-foreground transition-all hover:scale-105 hover:bg-accent hover:text-accent-foreground hover:shadow-xl hover:shadow-primary/25"
@@ -205,9 +273,7 @@ export default function HomeClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {socialLinks.map(({ name, icon: Icon, url }) => {
-                const IconComponent = Icon as React.FC<{ className?: string }>;
-                return (
+              {socialLinks.map(({ name, icon, url }) => (
                 <motion.a
                   key={name}
                   href={url}
@@ -218,10 +284,10 @@ export default function HomeClient() {
                   whileTap={{ scale: 0.95 }}
                   aria-label={name}
                 >
-                  <IconComponent className="w-5 h-5" />
+                  <span className="sr-only">{name}</span>
+                  <span className={`${icon} w-5 h-5`} aria-hidden="true" />
                 </motion.a>
-                );
-              })}
+              ))}
             </motion.div>
           </div>
 
@@ -232,7 +298,10 @@ export default function HomeClient() {
             transition={{ duration: 2, repeat: Infinity }}
             onClick={scrollToSkills}
           >
-            <ChevronDown className="w-8 h-8 text-muted-foreground" />
+            <span
+              className="icon-[ph--caret-down] w-8 h-8 text-muted-foreground"
+              aria-hidden="true"
+            />
           </motion.div>
         </div>
       </section>
@@ -247,81 +316,91 @@ export default function HomeClient() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Technical Skills
+            </h2>
             <p className="text-lg text-muted-foreground">
               Technologies I use to build amazing products
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map(({ name, icon: Icon, level, url, color }, index) => {
-              const IconComponent = Icon as React.FC<{ className?: string; style?: React.CSSProperties }>;
+            {skills.map(({ name, icon, level, url, color }, index) => {
               return (
-              <motion.a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex items-center gap-4 p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/50 hover:-translate-y-1 cursor-pointer overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
-                title={`Open ${name} official website`}
-              >
-                {/* Background gradient on hover */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                  style={{
-                    background: `linear-gradient(135deg, ${color}20 0%, transparent 100%)`,
-                  }}
-                />
-
-                <motion.span
-                  className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+                <motion.a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center gap-4 p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/50 hover:-translate-y-1 cursor-pointer overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.02 }}
+                  title={`Open ${name} official website`}
                 >
-                  <IconComponent className="w-8 h-8" style={{ color }} />
-                </motion.span>
+                  {/* Background gradient on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, ${color}20 0%, transparent 100%)`,
+                    }}
+                  />
 
-                <div className="flex-1">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-semibold text-lg">{name}</span>
-                    <span className="text-sm text-muted-foreground font-medium">{level}%</span>
-                  </div>
-                  <div className="relative w-full h-2 bg-muted rounded-full overflow-hidden">
-                    <motion.div
-                      className="absolute top-0 left-0 h-full rounded-full"
-                      style={{
-                        background: `linear-gradient(90deg, ${color} 0%, ${color}dd 100%)`,
-                      } as React.CSSProperties}
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${level}%` }}
-                      transition={{ duration: 1, delay: index * 0.05 + 0.3 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
-                </div>
-
-                <motion.span
-                  className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                  initial={{ x: -10, opacity: 0 }}
-                  whileHover={{ x: 0, opacity: 1 }}
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
+                  <motion.span
+                    className="flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </motion.span>
-              </motion.a>
+                    <span
+                      className={`${icon} w-8 h-8`}
+                      style={{ color }}
+                      aria-hidden="true"
+                    />
+                  </motion.span>
+
+                  <div className="flex-1">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-semibold text-lg">{name}</span>
+                      <span className="text-sm text-muted-foreground font-medium">
+                        {level}%
+                      </span>
+                    </div>
+                    <div className="relative w-full h-2 bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        className="absolute top-0 left-0 h-full rounded-full"
+                        style={
+                          {
+                            background: `linear-gradient(90deg, ${color} 0%, ${color}dd 100%)`,
+                          } as React.CSSProperties
+                        }
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${level}%` }}
+                        transition={{ duration: 1, delay: index * 0.05 + 0.3 }}
+                        viewport={{ once: true }}
+                      />
+                    </div>
+                  </div>
+
+                  <motion.span
+                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                    initial={{ x: -10, opacity: 0 }}
+                    whileHover={{ x: 0, opacity: 1 }}
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </motion.span>
+                </motion.a>
               );
             })}
           </div>

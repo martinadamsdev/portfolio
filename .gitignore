@@ -37,3 +37,10 @@ next-env.d.ts
 
 # IDE
 .idea
+
+# cloudflare / wrangler
+.wrangler/
+.dev.vars
+
+# search console / analytics exports
+*-Coverage-*/

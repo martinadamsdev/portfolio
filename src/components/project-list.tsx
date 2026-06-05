@@ -1,5 +1,5 @@
-import ProjectCard from "./project-card";
 import type { Project } from "@/lib/projects";
+import ProjectCard from "./project-card";
 
 interface ProjectListProps {
   projects: Project[];
@@ -9,8 +9,8 @@ export default function ProjectList({ projects }: ProjectListProps) {
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (
-        <ProjectCard 
-          key={project.slug} 
+        <ProjectCard
+          key={project.slug}
           slug={project.slug}
           title={project.title}
           description={project.description}

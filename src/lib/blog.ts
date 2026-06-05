@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 
 const blogDirectory = path.join(process.cwd(), "src/content/blog");
@@ -10,7 +10,7 @@ export interface BlogPostMeta {
   description: string;
   date: string;
   cover?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export function getAllPosts(): BlogPostMeta[] {

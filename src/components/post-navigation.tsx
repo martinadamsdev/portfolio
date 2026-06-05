@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PostNavigationProps {
   prevPost?: {
@@ -23,7 +22,10 @@ export default function PostNavigation({
           href={`/blog/${prevPost.slug}`}
           className="group flex items-center text-sm text-neutral-500 hover:text-cyan-400 transition-colors"
         >
-          <ChevronLeft className="h-4 w-4 mr-1" />
+          <span
+            className="icon-[ph--caret-left] h-4 w-4 mr-1"
+            aria-hidden="true"
+          />
           <div>
             <div className="text-xs text-neutral-400">Previous</div>
             <div className="group-hover:text-cyan-400">{prevPost.title}</div>
@@ -42,7 +44,10 @@ export default function PostNavigation({
             <div className="text-xs text-neutral-400">Next</div>
             <div className="group-hover:text-cyan-400">{nextPost.title}</div>
           </div>
-          <ChevronRight className="h-4 w-4 ml-1" />
+          <span
+            className="icon-[ph--caret-right] h-4 w-4 ml-1"
+            aria-hidden="true"
+          />
         </Link>
       ) : (
         <div />

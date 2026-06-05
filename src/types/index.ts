@@ -1,5 +1,3 @@
-import type { IconType } from "react-icons";
-
 export interface Project {
   slug: string;
   title: string;
@@ -26,7 +24,7 @@ export interface BlogPost {
 
 export interface Skill {
   name: string;
-  icon: IconType;
+  icon: string;
   level: number;
   url: string;
   color: string;
@@ -44,7 +42,7 @@ export interface Testimonial {
 
 export interface SocialLink {
   name: string;
-  icon: IconType;
+  icon: string;
   url: string;
 }
 

@@ -7,14 +7,7 @@ interface SkeletonProps {
 }
 
 export function Skeleton({ className }: SkeletonProps) {
-  return (
-    <div
-      className={cn(
-        "animate-pulse rounded-md bg-muted",
-        className
-      )}
-    />
-  );
+  return <div className={cn("animate-pulse rounded-md bg-muted", className)} />;
 }
 
 export function ProjectCardSkeleton() {
@@ -22,7 +15,7 @@ export function ProjectCardSkeleton() {
     <div className="bg-card border border-border rounded-2xl overflow-hidden">
       {/* Image skeleton */}
       <Skeleton className="h-48 w-full" />
-      
+
       {/* Content skeleton */}
       <div className="p-6 space-y-4">
         <Skeleton className="h-6 w-3/4" />
@@ -31,14 +24,14 @@ export function ProjectCardSkeleton() {
           <Skeleton className="h-4 w-full" />
           <Skeleton className="h-4 w-2/3" />
         </div>
-        
+
         {/* Technologies skeleton */}
         <div className="flex gap-2">
           <Skeleton className="h-6 w-16" />
           <Skeleton className="h-6 w-20" />
           <Skeleton className="h-6 w-18" />
         </div>
-        
+
         {/* Links skeleton */}
         <div className="flex gap-3">
           <Skeleton className="h-4 w-16" />
@@ -58,14 +51,14 @@ export function TestimonialSkeleton() {
           <Skeleton key={i} className="w-4 h-4" />
         ))}
       </div>
-      
+
       {/* Content skeleton */}
       <div className="space-y-2 mb-6">
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-3/4" />
       </div>
-      
+
       {/* Author skeleton */}
       <div className="flex items-center gap-3">
         <Skeleton className="w-10 h-10 rounded-full" />

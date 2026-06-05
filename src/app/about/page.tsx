@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About - Martin",
+  alternates: { canonical: "/about" },
   description:
     "Learn more about Martin, a senior software engineer passionate about modern web development, open source, and building scalable solutions.",
   openGraph: {

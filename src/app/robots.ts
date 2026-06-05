@@ -1,4 +1,6 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   const siteUrl =
@@ -36,7 +38,15 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "Googlebot-Image",
-        allow: ["/images/", "/opengraph-image", "/*.png$", "/*.jpg$", "/*.jpeg$", "/*.webp$", "/*.avif$"],
+        allow: [
+          "/images/",
+          "/opengraph-image",
+          "/*.png$",
+          "/*.jpg$",
+          "/*.jpeg$",
+          "/*.webp$",
+          "/*.avif$",
+        ],
         disallow: ["/api/", "/admin/"],
       },
       // Bing specific rules
@@ -171,10 +181,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    sitemap: [
-      `${siteUrl}/sitemap.xml`,
-      `${siteUrl}/sitemap-images.xml`,
-    ],
+    sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,
   };
 }

@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import BlogCard from "./blog-card";
 
 // 懒加载博客卡片组件
 const LazyBlogCard = dynamic(() => import("./blog-card"), {

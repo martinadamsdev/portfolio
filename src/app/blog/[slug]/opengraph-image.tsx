@@ -1,7 +1,7 @@
-import { ImageResponse } from "next/og";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
+import { ImageResponse } from "next/og";
 
 export const alt = "Blog Post - Martin ";
 export const size = {
@@ -9,6 +9,15 @@ export const size = {
   height: 630,
 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const blogDir = path.join(process.cwd(), "src/content/blog");
+  const files = fs.readdirSync(blogDir);
+  return files
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({ slug: file.replace(/\.mdx$/, "") }));
+}
 
 async function getPost(slug: string) {
   const filePath = path.join(process.cwd(), "src/content/blog", `${slug}.mdx`);
@@ -21,33 +30,30 @@ async function getPost(slug: string) {
 export default async function OGImage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const frontmatter = await getPost(params.slug);
+  const { slug } = await params;
+  const frontmatter = await getPost(slug);
   const title = frontmatter?.title || "Blog Post";
   return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 56,
-          background: "linear-gradient(135deg, #18181b 0%, #2563eb 100%)",
-          color: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          letterSpacing: "-2px",
-          fontWeight: 700,
-        }}
-      >
-        <span>{title}</span>
-        <span style={{ fontSize: 28, marginTop: 24 }}>
-          by Martin 
-        </span>
-      </div>
-    ),
-    { ...size }
+    <div
+      style={{
+        fontSize: 56,
+        background: "linear-gradient(135deg, #18181b 0%, #2563eb 100%)",
+        color: "white",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        letterSpacing: "-2px",
+        fontWeight: 700,
+      }}
+    >
+      <span>{title}</span>
+      <span style={{ fontSize: 28, marginTop: 24 }}>by Martin</span>
+    </div>,
+    { ...size },
   );
 }

@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 interface SEOProps {
   title: string;
@@ -111,7 +111,12 @@ export function generateSEOMetadata({
         },
       ],
       locale,
-      type: type === "article" ? "article" : type === "profile" ? "profile" : "website",
+      type:
+        type === "article"
+          ? "article"
+          : type === "profile"
+            ? "profile"
+            : "website",
       ...(type === "article" && {
         publishedTime,
         modifiedTime: modifiedTime || publishedTime,
@@ -140,14 +145,17 @@ export function generateSEOMetadata({
       "dc.language": locale.replace("_", "-"),
       "dc.source": pageUrl,
       "article:author": author,
-      ...additionalMetaTags.reduce((acc, tag) => {
-        if (tag.name) {
-          acc[tag.name] = tag.content;
-        } else if (tag.property) {
-          acc[tag.property] = tag.content;
-        }
-        return acc;
-      }, {} as Record<string, string>),
+      ...additionalMetaTags.reduce(
+        (acc, tag) => {
+          if (tag.name) {
+            acc[tag.name] = tag.content;
+          } else if (tag.property) {
+            acc[tag.property] = tag.content;
+          }
+          return acc;
+        },
+        {} as Record<string, string>,
+      ),
     },
   };
 
@@ -170,16 +178,16 @@ export function generateCanonicalUrl(path: string): string {
 // Helper function to truncate description for optimal SEO
 export function truncateDescription(
   description: string,
-  maxLength: number = 160
+  maxLength: number = 160,
 ): string {
   if (description.length <= maxLength) return description;
-  return description.substring(0, maxLength - 3).trim() + "...";
+  return `${description.substring(0, maxLength - 3).trim()}...`;
 }
 
 // Helper function to generate keywords from tags and content
 export function generateKeywords(
   tags: string[] = [],
-  additionalKeywords: string[] = []
+  additionalKeywords: string[] = [],
 ): string[] {
   const baseKeywords = [
     "Martin Wang",
@@ -205,14 +213,7 @@ export function generateSocialMetaTags(props: SEOProps): Array<{
   property?: string;
   content: string;
 }> {
-  const {
-    title,
-    description,
-    image,
-    author = "Martin Wang",
-    type = "website",
-    tags = [],
-  } = props;
+  const { image, author = "Martin Wang", tags = [] } = props;
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
@@ -227,27 +228,27 @@ export function generateSocialMetaTags(props: SEOProps): Array<{
   return [
     // Facebook specific
     { property: "fb:app_id", content: process.env.NEXT_PUBLIC_FB_APP_ID || "" },
-    
+
     // Pinterest specific
     { name: "pinterest-rich-pin", content: "true" },
-    
+
     // LinkedIn specific
     { property: "linkedin:owner", content: "Martin Wang" },
-    
+
     // Additional social tags
     { property: "article:author", content: author },
     { property: "article:tag", content: tags.join(", ") },
-    
+
     // Schema.org microdata fallbacks
     { name: "author", content: author },
     { name: "image", content: imageUrl },
     { name: "thumbnail", content: imageUrl },
-  ].filter(tag => tag.content);
+  ].filter((tag) => tag.content);
 }
 
 // Generate breadcrumb structured data
 export function generateBreadcrumbSchema(
-  items: Array<{ name: string; url: string }>
+  items: Array<{ name: string; url: string }>,
 ) {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
